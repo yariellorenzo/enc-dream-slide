@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ENC — Yariel Lorenzo</title>
+  <style>
+    :root {
+      --bg: #090909;
+      --bg-soft: #111111;
+      --panel: #151515;
+      --panel-2: #1b1b1b;
+      --text: #f6f1ea;
+      --muted: #c8bbb0;
+      --line: rgba(255,255,255,0.08);
+      --accent: #c84e1b;
+      --accent-2: #ff8c42;
+      --shadow: 0 24px 80px rgba(0,0,0,0.45);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, Arial, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top, rgba(200,78,27,0.18), transparent 26%),
+        linear-gradient(180deg, #070707, #0d0d0d 40%, #080808 100%);
+    }
+
+    .frame {
+      width: min(1200px, calc(100% - 40px));
+      margin: 24px auto 48px;
+      border: 1px solid var(--line);
+      background: rgba(12,12,12,0.92);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 26px;
+      border-bottom: 1px solid var(--line);
+      background: rgba(255,255,255,0.02);
+      position: sticky;
+      top: 0;
+      backdrop-filter: blur(8px);
+      z-index: 5;
+    }
+
+    .brand {
+      font-weight: 800;
+      letter-spacing: 0.18em;
+      color: var(--accent-2);
+    }
+
+    .nav a {
+      color: var(--muted);
+      text-decoration: none;
+      margin-left: 18px;
+      font-size: 0.95rem;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      min-height: 76vh;
+    }
+
+    .hero-copy {
+      padding: 72px 56px 56px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 22px;
+    }
+
+    .eyebrow {
+      color: var(--accent-2);
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      font-size: 0.8rem;
+      font-weight: 700;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(3rem, 6vw, 6rem);
+      line-height: 0.94;
+      letter-spacing: -0.05em;
+    }
+
+    .quote {
+      margin: 0;
+      font-size: 1.15rem;
+      line-height: 1.8;
+      color: var(--muted);
+      max-width: 58ch;
+    }
+
+    .quote strong {
+      color: var(--text);
+      font-weight: 700;
+    }
+
+    .hero-note {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 12px;
+    }
+
+    .mini {
+      padding: 16px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+      border: 1px solid var(--line);
+    }
+
+    .mini span {
+      display: block;
+      color: var(--accent-2);
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 8px;
+      font-weight: 700;
+    }
+
+    .mini strong {
+      font-size: 1rem;
+      line-height: 1.45;
+    }
+
+    .hero-visual {
+      position: relative;
+      min-height: 520px;
+      background:
+        linear-gradient(180deg, rgba(0,0,0,0.25), rgba(0,0,0,0.55)),
+        url('https://images.unsplash.com/photo-1515169067868-5387ec356754?auto=format&fit=crop&w=1400&q=80') center/cover;
+      border-left: 1px solid var(--line);
+      display: flex;
+      align-items: flex-end;
+      padding: 30px;
+    }
+
+    .hero-card {
+      width: 100%;
+      background: rgba(11,11,11,0.72);
+      border: 1px solid rgba(255,255,255,0.1);
+      padding: 18px;
+      backdrop-filter: blur(8px);
+    }
+
+    .hero-card h2 {
+      margin: 0 0 8px;
+      font-size: 1rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent-2);
+    }
+
+    .hero-card p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    section {
+      padding: 56px;
+      border-top: 1px solid var(--line);
+    }
+
+    .section-tag {
+      color: var(--accent-2);
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      font-size: 0.75rem;
+      font-weight: 800;
+      margin-bottom: 14px;
+    }
+
+    .section-title {
+      margin: 0 0 16px;
+      font-size: clamp(1.8rem, 3vw, 2.8rem);
+      letter-spacing: -0.03em;
+    }
+
+    .section-text {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.9;
+      max-width: 75ch;
+      font-size: 1.02rem;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 22px;
+      margin-top: 26px;
+    }
+
+    .card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+      border: 1px solid var(--line);
+      padding: 24px;
+    }
+
+    .card h3 {
+      margin: 0 0 10px;
+      font-size: 1.15rem;
+    }
+
+    .card p, .card li {
+      color: var(--muted);
+      line-height: 1.75;
+    }
+
+    .facts {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin-top: 26px;
+    }
+
+    .fact {
+      border: 1px solid var(--line);
+      background: var(--panel);
+      padding: 18px;
+    }
+
+    .fact small {
+      display: block;
+      color: var(--accent-2);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 8px;
+      font-weight: 700;
+    }
+
+    .fact strong {
+      font-size: 1rem;
+      line-height: 1.5;
+    }
+
+    .fact p {
+      color: var(--muted);
+      line-height: 1.7;
+      margin: 8px 0 0;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 26px;
+    }
+
+    .photo {
+      min-height: 260px;
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(200,78,27,0.2), rgba(0,0,0,0.35)), var(--panel-2);
+      padding: 18px;
+      display: flex;
+      align-items: end;
+    }
+
+    .photo div {
+      width: 100%;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding-top: 12px;
+    }
+
+    .photo strong {
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    .photo p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.6;
+      font-size: 0.92rem;
+    }
+
+    .footer {
+      padding: 22px 56px 40px;
+      color: #a99d92;
+      font-size: 0.9rem;
+      line-height: 1.7;
+    }
+
+    .sources a { color: var(--accent-2); }
+
+    @media (max-width: 900px) {
+      .hero, .grid-2, .facts, .gallery, .hero-note { grid-template-columns: 1fr; }
+      .hero-visual { min-height: 360px; border-left: 0; border-top: 1px solid var(--line); }
+      .hero-copy, section { padding: 34px 22px; }
+      .footer { padding: 22px; }
+      .nav { padding: 16px 18px; flex-direction: column; align-items: flex-start; gap: 8px; }
+      .nav a { margin: 0 14px 0 0; }
+    }
+  </style>
+</head>
+<body>
+  <div class="frame">
+    <nav class="nav">
+      <div class="brand">ENC</div>
+      <div>
+        <a href="#why">Why ENC</a>
+        <a href="#facts">Facts</a>
+        <a href="#disciplines">My Disciplines</a>
+        <a href="#gallery">Gallery</a>
+      </div>
+    </nav>
+
+    <header class="hero">
+      <div class="hero-copy">
+        <div class="eyebrow">Yariel Lorenzo • Dream School Portfolio</div>
+        <h1>ENC</h1>
+        <p class="quote"><strong>“Circus is where discipline meets art.”</strong><br>
+          École nationale de cirque is my dream school because if I want the best chance of reaching <strong>Cirque du Soleil</strong> and becoming a world-class performer, this is where I want to train. I would give anything to get there. I want to build the kind of skill, discipline, and story that one day lets me look back at my life on tour and know I really chased the highest level.</p>
+        <div class="hero-note">
+          <div class="mini"><span>Why it matters</span><strong>Best path toward elite circus training</strong></div>
+          <div class="mini"><span>Main disciplines</span><strong>Partner Acro &amp; Straps</strong></div>
+          <div class="mini"><span>Big inspiration</span><strong>Cirque du Soleil</strong></div>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="hero-card">
+          <h2>What separates it</h2>
+          <p>For me, ENC stands out because it feels serious, artistic, and world-class. It is not just about learning tricks. It is about becoming a complete performer in one of the strongest circus environments in the world.</p>
+        </div>
+      </div>
+    </header>
+
+    <section id="why">
+      <div class="section-tag">Why ENC</div>
+      <h2 class="section-title">Why I chose this school</h2>
+      <p class="section-text">I want to go to ENC because it feels like the school that gives me the strongest shot at becoming the kind of performer I want to be. My dream is not just to train hard — it is to reach a level where I can perform with companies like Cirque du Soleil, travel, go on tour, and build real stories out of my work. I also care about what happens after that. The people, coaches, and connections around ENC could help me grow not only as an artist, but also as someone who can bring more back to the circus community in Boston and Massachusetts later on.</p>
+      <div class="grid-2">
+        <div class="card">
+          <h3>What makes it feel right for me</h3>
+          <ul>
+            <li>It is internationally respected and connected to a serious circus culture in Montreal.</li>
+            <li>It feels closer to the highest level of artistic and physical training.</li>
+            <li>I want a place that pushes me hard and treats circus as both performance and discipline.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>What I want from the experience</h3>
+          <ul>
+            <li>To become stronger, cleaner, and more complete as a performer.</li>
+            <li>To build unforgettable stories from training, touring, and performing.</li>
+            <li>To grow with other people who are as serious about circus as I am.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="facts">
+      <div class="section-tag">ENC Facts</div>
+      <h2 class="section-title">What the school is, where it is, and what it is known for</h2>
+      <p class="section-text">École nationale de cirque, also called the National Circus School, is a professional circus arts school in Montreal, Quebec. It has been training circus artists since 1981 and is known for high-level training in an environment built specifically for circus. It is part of Montreal’s larger circus ecosystem, which is one reason the city matters so much to me.</p>
+      <div class="facts">
+        <div class="fact"><small>Location</small><strong>Montreal, Quebec, Canada</strong><p>Montreal is one of the strongest circus cities in North America, with a deep creative and performance culture.</p></div>
+        <div class="fact"><small>Programs</small><strong>Preparatory, secondary, and higher-education circus training</strong><p>The school offers a full ladder of circus education, including professional college-level training.</p></div>
+        <div class="fact"><small>College experience</small><strong>Its college-level circus diploma is a three-year program</strong><p>This is the part that matters most to me because it combines high-level circus specialization with a serious training path.</p></div>
+        <div class="fact"><small>Training style</small><strong>Artistic + technical + physical</strong><p>ENC is known for shaping complete performers, not just teaching isolated skills.</p></div>
+        <div class="fact"><small>Community & campus</small><strong>Part of Montreal’s Cité des arts du cirque</strong><p>It sits inside a circus hub that includes major circus institutions and a strong surrounding artistic community.</p></div>
+        <div class="fact"><small>Housing / stats</small><strong>Some details are not clearly published in easy public official summaries</strong><p>I did not want to fake acceptance rate, graduation rate, tuition, or housing specifics without cleaner official confirmation.</p></div>
+      </div>
+    </section>
+
+    <section id="disciplines">
+      <div class="section-tag">My Disciplines</div>
+      <h2 class="section-title">Why partner acro and straps matter to me</h2>
+      <div class="grid-2">
+        <div class="card">
+          <h3>Partner Acro</h3>
+          <p>I like partner acro because it is physically challenging and powerful to watch. There is trust, timing, balance, flips, standing on other people, and difficult skills that look almost unreal when they are done well. It takes both control and courage, and that is part of why I love it.</p>
+        </div>
+        <div class="card">
+          <h3>Straps</h3>
+          <p>I like straps because it is pure strength, control, and movement. Twisting, turning, holding shapes, and making hard things look smooth is part of what draws me to it. Straps feels like proof that what looks impossible can actually become possible through training.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="gallery">
+      <div class="section-tag">Gallery</div>
+      <h2 class="section-title">My circus photos</h2>
+      <p class="section-text">Photo spots are ready here. Once I add my actual partner acro and straps images, this section becomes the visual proof behind everything else on the page.</p>
+      <div class="gallery">
+        <div class="photo"><div><strong>Partner Acro Photo 1</strong><p>Add Yariel partner acro image here.</p></div></div>
+        <div class="photo"><div><strong>Partner Acro Photo 2</strong><p>Add Yariel partner acro image here.</p></div></div>
+        <div class="photo"><div><strong>Straps / Training Photo</strong><p>Add Yariel straps or performance image here.</p></div></div>
+      </div>
+    </section>
+
+    <div class="footer sources">
+      Built as a personal portfolio-style school project page. Facts on location, school type, history, and program structure were based on public sources including the official École nationale de cirque site and Montreal/FEDEC references. I left acceptance rate, graduation rate, tuition, and housing numbers unclaimed here because I did not verify clean official public figures for those yet.
+      <br><br>
+      Sources: <a href="https://ecolenationaledecirque.ca/en/" target="_blank" rel="noreferrer">École nationale de cirque</a> · <a href="https://www.fedec.eu/en/members/41-enc-montreal-ecole-nationale-de-cirque" target="_blank" rel="noreferrer">FEDEC profile</a> · <a href="https://www.mtl.org/en/experience/montreal-year-round-circus-hub" target="_blank" rel="noreferrer">Tourisme Montréal</a> · <a href="https://tohu.ca/en/mission/cite-des-arts-du-cirque" target="_blank" rel="noreferrer">TOHU / Cité des arts du cirque</a>
+    </div>
+  </div>
+</body>
+</html>
