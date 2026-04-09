@@ -1,14 +1,15 @@
 :root {
-  --bg: #080808;
-  --bg-soft: #111111;
-  --panel: #171717;
-  --panel-2: #1d1d1d;
-  --text: #f5efe9;
-  --muted: #c4b6ab;
+  --bg: #060606;
+  --bg-soft: #101010;
+  --panel: #141414;
+  --panel-2: #1b1b1b;
+  --text: #f6f1ed;
+  --muted: #d0b8b8;
   --line: rgba(255,255,255,0.08);
-  --accent: #c95c22;
-  --accent-2: #ff9a52;
-  --shadow: 0 24px 80px rgba(0,0,0,0.45);
+  --accent: #8f1111;
+  --accent-2: #e23a3a;
+  --accent-3: #ff6b6b;
+  --shadow: 0 24px 80px rgba(0,0,0,0.5);
 }
 
 * { box-sizing: border-box; }
@@ -17,8 +18,9 @@ body {
   font-family: Inter, Arial, sans-serif;
   color: var(--text);
   background:
-    radial-gradient(circle at top, rgba(201,92,34,0.18), transparent 28%),
-    linear-gradient(180deg, #050505, #0b0b0b 42%, #070707 100%);
+    radial-gradient(circle at top, rgba(226,58,58,0.18), transparent 28%),
+    radial-gradient(circle at 80% 20%, rgba(143,17,17,0.14), transparent 24%),
+    linear-gradient(180deg, #040404, #0a0a0a 42%, #060606 100%);
 }
 
 .reveal {
@@ -207,8 +209,8 @@ h1 {
 .gallery-card:hover,
 .feature-card:hover {
   transform: translateY(-6px);
-  border-color: rgba(255, 154, 82, 0.38);
-  box-shadow: 0 16px 40px rgba(0,0,0,0.28);
+  border-color: rgba(226, 58, 58, 0.42);
+  box-shadow: 0 16px 40px rgba(0,0,0,0.32);
 }
 
 .panel span {
@@ -240,8 +242,8 @@ h1 {
 .image-placeholder {
   min-height: 260px;
   background:
-    linear-gradient(180deg, rgba(201,92,34,0.22), rgba(0,0,0,0.45)),
-    linear-gradient(135deg, #1b1b1b, #111111);
+    linear-gradient(180deg, rgba(226,58,58,0.24), rgba(0,0,0,0.45)),
+    linear-gradient(135deg, #1b1b1b, #101010);
   border: 1px solid var(--line);
   margin-bottom: 16px;
 }
